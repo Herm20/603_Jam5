@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private bool doCountdown = false;
 
+    [SerializeField]
+    private int playersToEndGame = 1;
+
     [Header("References")]
 
     [SerializeField]
@@ -21,6 +24,9 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private CountdownController countdownController;
+
+    [SerializeField]
+    private EndGameScreenController endGameScreenController;
 
 	// Use this for initialization
 	void Start () {
@@ -52,12 +58,13 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator PlayGame() {
-        while (true) {
+        while (playerManager.GetNumPlayersAlive() > playersToEndGame) {
             yield return null;
         }
     }
 
     private IEnumerator EndGame() {
+        endGameScreenController.Display();
         yield return null;
     }
 
