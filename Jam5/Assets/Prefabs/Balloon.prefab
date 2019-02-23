@@ -171,8 +171,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585739977288170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.09, z: 10}
-  m_LocalScale: {x: 0.15, y: 3.63, z: 1}
+  m_LocalPosition: {x: 0, y: -2.437, z: 10}
+  m_LocalScale: {x: 0.15, y: 2.9352503, z: 1}
   m_Children:
   - {fileID: 4673379671523670}
   - {fileID: 4134718727243464}
@@ -254,7 +254,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buoyancy: 11000
+  buoyancyFactor: 0.5
 --- !u!212 &212014216747803408
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -436,7 +437,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.43}
-  m_ConnectedAnchor: {x: 0, y: 0.30330572}
+  m_ConnectedAnchor: {x: 0, y: 0.49331397}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

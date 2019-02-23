@@ -6,10 +6,7 @@ public class MouseInputController : MonoBehaviour {
 
     public PlayerController playerController;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    [SerializeField] float jumpPower = 5f;
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,8 +17,7 @@ public class MouseInputController : MonoBehaviour {
             Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(playerController.transform.position);
             Vector3 jumpDirection = (mousePosition - playerScreenPosition).normalized;
 
-            playerController.Jump(jumpDirection, 1);
-
+            playerController.Jump(jumpDirection, jumpPower);
         }
 
         if (Input.GetMouseButtonDown(1))

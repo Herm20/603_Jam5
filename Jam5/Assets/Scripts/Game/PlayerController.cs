@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [Header("Settings")]
+
+    [SerializeField]
+    private bool canMultiJump = false; // Testing
+
     public float maxPower;
     public Color color {
         get {
@@ -23,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     private Joint2D joint;
     private BalloonString.GrabSlot currentGrabSlot;
     private BalloonString lastGrabbed;
+    private bool canJump = true;
 
     private Item item = null;
 
@@ -33,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         joint = GetComponent<Joint2D>();
     }
 
@@ -44,8 +50,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (frozenTime > 0.0f)
-        {
+        if (frozenTime > 0.0f) {
             transform.position = frozenPos;
             rigidbody.velocity = new Vector2(0, 0);
             rigidbody.angularVelocity = 0.0f;
@@ -53,16 +58,17 @@ public class PlayerController : MonoBehaviour {
 
             return;
         }
-
-        if (jetpackTime > 0.0f)
-        {
+        if (jetpackTime > 0.0f) {
             jetpackTime -= Time.deltaTime;
             rigidbody.AddForce(jetpackForce * Time.deltaTime, ForceMode2D.Force);
         }
     }
 
-    public void Attach(BalloonString _balloonString, BalloonString.GrabSlot _grabSlot)
-    {
+    public bool IsGrabbingBalloonString() {
+        return currentGrabSlot != null;
+    }
+
+    public void Attach(BalloonString _balloonString, BalloonString.GrabSlot _grabSlot) {
         // Ignore if this was the last balloon we grabbed onto
         if (lastGrabbed == _balloonString) return;
 
@@ -77,6 +83,8 @@ public class PlayerController : MonoBehaviour {
         currentGrabSlot = _grabSlot;
         joint.enabled = true;
         lastGrabbed = _balloonString;
+
+        canJump = true;
     }
 
     public void GetItem(Item _item)
@@ -89,12 +97,12 @@ public class PlayerController : MonoBehaviour {
         _item.gameObject.transform.rotation = Quaternion.identity;
 
         _item.transform.SetParent(transform, false);
-
+        
         item = _item;
     }
 
     public void ReleaseBalloonString() {
-        if (currentGrabSlot != null) {
+        if (IsGrabbingBalloonString()) {
             currentGrabSlot.playerInUse = null;
             currentGrabSlot = null;
             joint.connectedBody = null;
@@ -104,6 +112,9 @@ public class PlayerController : MonoBehaviour {
 
     public void Jump(Vector2 _direction, float _powerScale) {
         if (frozenTime > 0.0f) return;
+
+        if (!canMultiJump && !canJump) return;
+        canJump = false;
 
         // Join only enabled when are grabbing a balloon string
         if (joint.enabled) {
@@ -151,6 +162,12 @@ public class PlayerController : MonoBehaviour {
         deathExplosion.transform.position = this.transform.position;
         deathExplosion.SetColor(color);
         Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Ground") {
+            canJump = true;
+        }
     }
 
 }

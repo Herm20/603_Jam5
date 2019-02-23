@@ -113,14 +113,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2143122432
+  randomSeed: -1661922436
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -800,7 +800,7 @@ ParticleSystem:
       cycleCount: 1
       repeatInterval: 0.01
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -811,19 +811,25 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 0.9149728
+          value: 1
+          inSlope: 0.066952504
+          outSlope: 0.066952504
           tangentMode: 0
         - serializedVersion: 2
           time: 1
-          value: 1
+          value: 0
           inSlope: 1
-          outSlope: 0
+          outSlope: 1
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -1352,14 +1358,14 @@ ParticleSystem:
           outSlope: -1.4019673
           tangentMode: 0
         - serializedVersion: 2
-          time: 0.1072464
+          time: 0.063079834
           value: 0.16216278
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         - serializedVersion: 2
           time: 1
-          value: 0
+          value: 0.05
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1376,7 +1382,7 @@ ParticleSystem:
           outSlope: -0.82380515
           tangentMode: 0
         - serializedVersion: 2
-          time: 0.09781647
+          time: 0.08519745
           value: 0.567569
           inSlope: 0
           outSlope: 0
@@ -1388,8 +1394,14 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
         - serializedVersion: 2
+          time: 0.3191744
+          value: 0.2165494
+          inSlope: -0.37234157
+          outSlope: -0.37234157
+          tangentMode: 0
+        - serializedVersion: 2
           time: 1
-          value: 0
+          value: 0.05
           inSlope: 0
           outSlope: 0
           tangentMode: 0
