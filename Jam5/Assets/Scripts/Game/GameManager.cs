@@ -14,10 +14,19 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private int playersToEndGame = 1;
 
+    [SerializeField]
+	private float balloonSpawningIntervalMean = 1f;
+	
+    [SerializeField]
+	private float balloonSpawningIntervalSD = 0.2f;
+
     [Header("References")]
 
     [SerializeField]
     private PlayerManager playerManager;
+	
+	[SerializeField]
+	private BalloonSpawner balloonSpawner;
 
     [SerializeField]
     private CameraController cameraController;
@@ -47,6 +56,10 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator InitializeGame() {
         playerManager.SpawnPlayers(playerSpawnData);
+		
+		for (int n = 0; n < 5; n++)
+            balloonSpawner.Spawn(-2f, false);
+		
         yield return null;
     }
 
@@ -56,10 +69,28 @@ public class GameManager : MonoBehaviour {
         cameraController.speed = 2f;
         yield return null;
     }
-
+	
+	private float balloonSpawnCooldown = 1.0f;
     private IEnumerator PlayGame() {
         while (playerManager.GetNumPlayersAlive() > playersToEndGame) {
-            yield return null;
+            balloonSpawnCooldown -= Time.fixedDeltaTime;
+
+			if (balloonSpawnCooldown <= 0)
+			{
+				balloonSpawner.Spawn(Camera.main.transform.localPosition.y - 15);
+
+				float u, v, r;
+
+				do
+				{
+					u = 2 * Random.value - 1;
+					v = 2 * Random.value - 1;
+					r = u * u + v * v;
+				} while (r <= 0 || r >= 1);
+
+				balloonSpawnCooldown = balloonSpawningIntervalMean + (u * Mathf.Sqrt(-2 * Mathf.Log(r) / r) * balloonSpawningIntervalSD);
+			}
+			yield return null;
         }
     }
 
