@@ -24,6 +24,15 @@ public class MouseInputController : MonoBehaviour {
 
         }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(playerController.transform.position);
+            Vector3 jumpDirection = (mousePosition - playerScreenPosition).normalized;
+
+            playerController.Use(jumpDirection);
+        }
+
 	}
 
 }
