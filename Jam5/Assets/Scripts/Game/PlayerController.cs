@@ -5,14 +5,28 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float maxPower;
+    public Color color {
+        get {
+            return spriteRenderer.color;
+        }
+        set {
+            spriteRenderer.color = value;
+        }
+    }
+
+    [Header("Prefabs")]
+    [SerializeField]
+    private GameObject deathExplosionPrefab;
 
     new private Rigidbody2D rigidbody;
+    private SpriteRenderer spriteRenderer;
     private Joint2D joint;
     private BalloonString.GrabSlot currentGrabSlot;
     private BalloonString lastGrabbed;
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         joint = GetComponent<Joint2D>();
     }
 
@@ -64,6 +78,13 @@ public class PlayerController : MonoBehaviour {
 
         rigidbody.AddForce(_direction * power, ForceMode2D.Impulse);
 
+    }
+
+    public void Die() {
+        DeathExplosion deathExplosion = Instantiate(deathExplosionPrefab).GetComponent<DeathExplosion>();
+        deathExplosion.transform.position = this.transform.position;
+        deathExplosion.SetColor(color);
+        Destroy(this.gameObject);
     }
 
 }
