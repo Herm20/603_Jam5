@@ -4,21 +4,50 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    private GameObject cam;
-    private Vector3 position;
-    [SerializeField] private float speed;
+    public static PlayerSpawnData[] playerSpawnData;
+
+    [SerializeField]
+    private PlayerManager playerManager;
+
+    [SerializeField]
+    private CameraController cameraController;
 
 	// Use this for initialization
 	void Start () {
-        cam = Camera.main.gameObject;
-        position = cam.transform.position;
-        speed = 2.0f;
+        StartCoroutine(GameLoop());
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        position.y += speed * Time.deltaTime;
 
-        cam.transform.position = position;
-	}
+    private IEnumerator GameLoop() {
+
+        yield return StartCoroutine(InitializeGame());
+
+        yield return StartCoroutine(StartGame());
+
+        yield return StartCoroutine(PlayGame());
+
+        yield return StartCoroutine(EndGame());
+        
+    }
+
+    private IEnumerator InitializeGame() {
+        playerManager.SpawnPlayers(playerSpawnData);
+        yield return null;
+    }
+
+    private IEnumerator StartGame() {
+        yield return new WaitForSeconds(1);
+        cameraController.speed = 2f;
+        yield return null;
+    }
+
+    private IEnumerator PlayGame() {
+        while (true) {
+            yield return null;
+        }
+    }
+
+    private IEnumerator EndGame() {
+        yield return null;
+    }
+
 }
