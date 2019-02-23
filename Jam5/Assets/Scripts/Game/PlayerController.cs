@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [Header("Settings")]
+
+    [SerializeField]
+    private bool canMultiJump = false; // Testing
+
     public float maxPower;
     public Color color {
         get {
@@ -23,10 +28,11 @@ public class PlayerController : MonoBehaviour {
     private Joint2D joint;
     private BalloonString.GrabSlot currentGrabSlot;
     private BalloonString lastGrabbed;
+    private bool canJump = true;
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         joint = GetComponent<Joint2D>();
     }
 
@@ -39,6 +45,10 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 	}
+
+    public bool IsGrabbingBalloonString() {
+        return currentGrabSlot != null;
+    }
 
     public void Attach(BalloonString _balloonString, BalloonString.GrabSlot _grabSlot) {
 
@@ -55,10 +65,12 @@ public class PlayerController : MonoBehaviour {
         joint.enabled = true;
         lastGrabbed = _balloonString;
 
+        canJump = true;
+
     }
 
     public void ReleaseBalloonString() {
-        if (currentGrabSlot != null) {
+        if (IsGrabbingBalloonString()) {
             currentGrabSlot.playerInUse = null;
             currentGrabSlot = null;
             joint.connectedBody = null;
@@ -67,6 +79,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Jump(Vector2 _direction, float _powerScale) {
+
+        if (!canJump) return;
+        canJump = false;
 
         // Join only enabled when are grabbing a balloon string
         if (joint.enabled) {
@@ -85,6 +100,12 @@ public class PlayerController : MonoBehaviour {
         deathExplosion.transform.position = this.transform.position;
         deathExplosion.SetColor(color);
         Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Ground") {
+            canJump = true;
+        }
     }
 
 }
