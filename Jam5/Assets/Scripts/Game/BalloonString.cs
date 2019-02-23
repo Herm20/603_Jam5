@@ -19,12 +19,16 @@ public class BalloonString : MonoBehaviour {
 	}
 
     private void Attach(GameObject _gObj) {
+        
+        PlayerController playerController = _gObj.GetComponent<PlayerController>();
+
+        // Don't grab if player is already grabbing a string
+        if (playerController.IsGrabbingBalloonString()) return;
 
         for (int i = 0; i < grabSlots.Length; i++) {
 
             GrabSlot grabSlot = grabSlots[i];
             if (grabSlot.playerInUse == null) {
-                PlayerController playerController = _gObj.GetComponent<PlayerController>();
                 playerController.Attach(this, grabSlot);
                 grabSlot.playerInUse = playerController;
                 break;
