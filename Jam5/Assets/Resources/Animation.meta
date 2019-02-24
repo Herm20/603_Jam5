@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Jam5/Assets/Resources/Animation.meta
 guid: 24bdd6c8b1fa4d14298c53fb0dcb6e5d
+=======
+guid: 9a061385693e67f41bd8ecdf89964447
+>>>>>>> master:Jam5/Assets/Prefabs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
