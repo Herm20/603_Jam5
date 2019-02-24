@@ -9,6 +9,12 @@ public class MenuManager : MonoBehaviour
     public GameObject mainMenu;
     public GameObject optionsMenu;
 
+    // Loads the Menu scene
+    public void Menu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     // Loads the Selection scene
     public void Select()
     {
