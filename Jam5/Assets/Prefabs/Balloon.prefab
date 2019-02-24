@@ -333,8 +333,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075e914413605dd41bb1bc70aa2945c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyancy: 11000
+  buoyancy: 250
   buoyancyFactor: 0.5
+  maxYSpeed: 5
+  spawnColors:
+  - {r: 0.9413793, g: 0.13843815, b: 0.13843815, a: 1}
+  - {r: 0.9275862, g: 0.9031127, b: 0.0954868, a: 1}
+  - {r: 0.09051722, g: 0.87931037, b: 0.14851677, a: 1}
+  - {r: 0.1992006, g: 0.15453853, b: 0.9137931, a: 1}
 --- !u!212 &212014216747803408
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3,7 +3,7 @@
 public class Balloon : MonoBehaviour
 {
     public float buoyancy;
-    public float buoyancyFactor = 0.5f;
+    public float buoyancyFactor = 1f;
     public Color color {
         get {
             return spriteRenderer.color;
@@ -12,6 +12,9 @@ public class Balloon : MonoBehaviour
             spriteRenderer.color = value;
         }
     }
+    public float maxYSpeed;
+
+    public Color[] spawnColors;
 
     new private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
@@ -33,13 +36,24 @@ public class Balloon : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.color = spawnColors[Random.Range(0, spawnColors.Length)];
     }
 
     private void FixedUpdate()
     {
-        if (transform.position.y > Camera.main.transform.position.y + 20f || transform.position.y < Camera.main.transform.position.y - 50f)
+
+        if (transform.position.y > Camera.main.transform.position.y + 20f || transform.position.y < Camera.main.transform.position.y - 50f) {
             spawner.Recycle(transform.parent);
-        else
-            rigidbody.AddForce(Vector2.up * buoyancy * Time.fixedDeltaTime);
+        } else {
+            rigidbody.AddForce(Vector2.up * buoyancy);
+        }
+
+        if (rigidbody.velocity.y > maxYSpeed) {
+            Vector3 v = rigidbody.velocity;
+            v.y = maxYSpeed;
+            rigidbody.velocity = v;
+        }
+
     }
 }

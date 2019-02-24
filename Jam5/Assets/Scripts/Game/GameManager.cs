@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private int playersToEndGame = 1;
+
+    [SerializeField]
+    private bool exitToMenu = false;
 
     [SerializeField]
 	private float balloonSpawningIntervalMean = 1f;
@@ -96,7 +100,12 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator EndGame() {
         endGameScreenController.Display();
-        yield return null;
+        yield return new WaitForSeconds(5);
+        if (exitToMenu) {
+            SceneManager.LoadScene("MainMenu");
+        } else {
+            SceneManager.LoadScene("Game");
+        }
     }
 
 }
