@@ -622,7 +622,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 875827245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75e394e194abd1c43b7150d6f5bc9144, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5a95618f8fda04793934239cfe7801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: cc22d978b37950247b50b169aa75198e, type: 2}
@@ -898,12 +898,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8e3b953d59e70974db988225fbabaefa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7662955175de7594d82ecba6748cb9fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 98.170006, y: 64.82}
+  m_Size: {x: 40.93, y: 23.890001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -916,8 +916,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1297563481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.006, z: 100}
-  m_LocalScale: {x: 0.18212554, y: 0.15529358, z: 1}
+  m_LocalPosition: {x: 0, y: 0.028, z: 100}
+  m_LocalScale: {x: 0.43470564, y: 0.41981912, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
