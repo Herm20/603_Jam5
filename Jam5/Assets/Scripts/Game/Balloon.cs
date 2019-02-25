@@ -44,7 +44,7 @@ public class Balloon : MonoBehaviour
     {
 
         if (transform.position.y > Camera.main.transform.position.y + 20f || transform.position.y < Camera.main.transform.position.y - 50f) {
-            spawner.Recycle(transform.parent);
+            Destroy(transform.parent.gameObject);
         } else {
             rigidbody.AddForce(Vector2.up * buoyancy);
         }

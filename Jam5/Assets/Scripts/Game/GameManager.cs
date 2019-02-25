@@ -24,6 +24,23 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
 	private float balloonSpawningIntervalSD = 0.2f;
 
+    [SerializeField]
+    private int initialNumBalloons = 10;
+
+    [SerializeField][Range(0, 20)]
+    private float itemSpawnFrequency = 10;
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float itemSpawnFrequencyIncrease = 0.1f;
+
+    [SerializeField]
+    [Range(0, 20)]
+    private float obstacleSpawnFrequency = 10;
+
+    [SerializeField][Range(0, 1)]
+    private float obstacleSpawnFrequencyIncrease = 0.5f;
+
     [Header("References")]
 
     [SerializeField]
@@ -41,8 +58,14 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private EndGameScreenController endGameScreenController;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private RandomSpawner itemSpawner;
+
+    [SerializeField]
+    private RandomSpawner obstacleSpawner;
+
+    // Use this for initialization
+    void Start () {
         StartCoroutine(GameLoop());
 	}
 
@@ -61,8 +84,8 @@ public class GameManager : MonoBehaviour {
     private IEnumerator InitializeGame() {
         playerManager.SpawnPlayers(playerSpawnData);
 		
-		for (int n = 0; n < 5; n++)
-            balloonSpawner.Spawn(-2f, false);
+		for (int n = 0; n < initialNumBalloons; n++)
+            balloonSpawner.Spawn(-3f, false);
 		
         yield return null;
     }
@@ -70,16 +93,16 @@ public class GameManager : MonoBehaviour {
     private IEnumerator StartGame() {
         yield return new WaitForSeconds(1);
         if (doCountdown) yield return StartCoroutine(countdownController.BeginCountdown());
-        cameraController.speed = 0f;
+        cameraController.speed = 2f;
         yield return null;
     }
 	
 	private float balloonSpawnCooldown = 1.0f;
     private IEnumerator PlayGame() {
         while (playerManager.GetNumPlayersAlive() > playersToEndGame) {
-            balloonSpawnCooldown -= Time.fixedDeltaTime;
+            balloonSpawnCooldown -= Time.deltaTime;
 
-			if (balloonSpawnCooldown <= 0)
+            if (balloonSpawnCooldown <= 0)
 			{
 				balloonSpawner.Spawn(Camera.main.transform.localPosition.y - 15);
 
@@ -94,7 +117,17 @@ public class GameManager : MonoBehaviour {
 
 				balloonSpawnCooldown = balloonSpawningIntervalMean + (u * Mathf.Sqrt(-2 * Mathf.Log(r) / r) * balloonSpawningIntervalSD);
 			}
-			yield return null;
+
+            if (Random.Range(0, 10000) < itemSpawnFrequency)
+                itemSpawner.RandomSpawn(new Vector3(Random.Range(-20f, 20f), Camera.main.transform.localPosition.y + 15, 0));
+
+            if (Random.Range(0, 10000) < obstacleSpawnFrequency)
+                obstacleSpawner.RandomSpawn(new Vector3(Random.Range(-20f, 20f), Camera.main.transform.localPosition.y + Random.Range(15f, 30f), 0));
+
+            itemSpawnFrequency += itemSpawnFrequencyIncrease * Time.deltaTime;
+            obstacleSpawnFrequency += obstacleSpawnFrequencyIncrease * Time.deltaTime;
+
+            yield return null;
         }
     }
 
