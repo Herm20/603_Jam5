@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour {
 
     private Item item = null;
 
+    private ParticleSystem jetpackParticles;
+
     private Vector3 frozenPos;
     private float frozenTime = 0.0f;
     private Vector3 jetpackForce = new Vector3(0.0f, 2000.0f, 0.0f);
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         joint = GetComponent<Joint2D>();
+        jetpackParticles = transform.Find("JetpackParticles").gameObject.GetComponent<ParticleSystem>();
     }
 
     // Use this for initialization
@@ -155,6 +158,7 @@ public class PlayerController : MonoBehaviour {
     public void GetJet()
     {
         jetpackTime = 1.25f;
+        jetpackParticles.Play();
     }
 
     public void Die() {
