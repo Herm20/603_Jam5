@@ -85,7 +85,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1112347397855054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -207,7 +207,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 2}
+  m_Size: {x: 100, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &114353037347806794
 MonoBehaviour:
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1661343414842188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d11842f82456254fad990551df931b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 85b614698f7b5114db8a87762d1d16ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0}
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971665017540762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12833b06adf7e394494633b22c8243a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 494664197720c5e4c84c45b5b594be34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212595214478025016

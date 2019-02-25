@@ -9,9 +9,11 @@ public class AutoDestroyX : MonoBehaviour
     private void FixedUpdate()
     {
         if (larger)
+        {
             if (transform.position.x > offset)
                 Destroy(target ? target : gameObject);
+        }
         else if (transform.position.x < offset)
-                Destroy(target ? target : gameObject);
+            Destroy(target ? target : gameObject);
     }
 }
