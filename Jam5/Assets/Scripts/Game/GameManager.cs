@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator StartGame() {
         yield return new WaitForSeconds(1);
         if (doCountdown) yield return StartCoroutine(countdownController.BeginCountdown());
-        cameraController.speed = 2f;
+        cameraController.speed = 0f;
         yield return null;
     }
 	

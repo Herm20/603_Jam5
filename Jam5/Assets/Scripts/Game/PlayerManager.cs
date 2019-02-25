@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +27,6 @@ public class PlayerManager : MonoBehaviour {
             playerController.color = spawnData.color;
 
             playerObjs[i] = playerObj;
-
         }
     }
 
@@ -42,6 +42,8 @@ public class PlayerManager : MonoBehaviour {
 
 }
 
+[Serializable]
 public class PlayerSpawnData {
     public Color color;
+    public ControllerList playerInput;
 }
