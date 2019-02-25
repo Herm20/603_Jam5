@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 61259831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: 0}
+  m_LocalPosition: {x: 0, y: -21.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1189989855}
@@ -177,7 +177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 40, y: 4}
+  m_Size: {x: 1469.7, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &109095492
 GameObject:
@@ -810,6 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balloonPrefab: {fileID: 4740971107639862, guid: 1be0682a8974c6441a0593f1ed1ff062,
     type: 2}
+  spawningRangeX: {x: -30, y: 30}
 --- !u!4 &627561701
 Transform:
   m_ObjectHideFlags: 0
@@ -1029,8 +1030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443925ab63a06274c91f8b9f17fb0a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doCountdown: 0
-  playersToEndGame: -1
+  doCountdown: 1
+  playersToEndGame: 1
   exitToMenu: 0
   balloonSpawningIntervalMean: 0.7
   balloonSpawningIntervalSD: 0.2
@@ -1077,6 +1078,7 @@ MonoBehaviour:
   - {fileID: 1473325717}
   - {fileID: 442589938}
   - {fileID: 318158497}
+  playerObjs: []
 --- !u!114 &830881581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1091,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllers: []
+  playerColors:
+  - {r: 1, g: 0.64137924, b: 0, a: 1}
+  - {r: 0.57241344, g: 0, b: 1, a: 1}
+  - {r: 0.65517235, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.7241378, a: 1}
 --- !u!1 &877135775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1263,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.515627
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1279,7 +1286,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1189989851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5, z: -35}
+  m_LocalPosition: {x: 0, y: 0, z: -35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 61259832}
@@ -2150,6 +2157,22 @@ Prefab:
     - target: {fileID: 4286083803337076, guid: c5f992bc11804a14e9ffb1a3ae4904c9, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playerData.playerInput
+      value: 
+      objectReference: {fileID: 830881581}
+    - target: {fileID: 0}
+      propertyPath: GM
+      value: 
+      objectReference: {fileID: 830881581}
+    - target: {fileID: 0}
+      propertyPath: jumpPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857517731685210, guid: c5f992bc11804a14e9ffb1a3ae4904c9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5f992bc11804a14e9ffb1a3ae4904c9, type: 2}

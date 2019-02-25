@@ -25,6 +25,7 @@ public class Balloon : MonoBehaviour
     {
         // transform.localScale = size * Vector3.one;
         buoyancy *= Mathf.Pow(size, buoyancyFactor);
+        maxYSpeed *= Mathf.Pow(size, 0.5f);
 
         this.spawner = spawner;
 
@@ -43,7 +44,7 @@ public class Balloon : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (transform.position.y > Camera.main.transform.position.y + 20f || transform.position.y < Camera.main.transform.position.y - 50f) {
+        if (transform.position.y > Camera.main.transform.position.y + 30f || transform.position.y < Camera.main.transform.position.y - 50f) {
             Destroy(transform.parent.gameObject);
         } else {
             rigidbody.AddForce(Vector2.up * buoyancy);

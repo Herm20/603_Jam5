@@ -5,42 +5,37 @@ using UnityEngine;
 public class JoystickController : MonoBehaviour {
     public PlayerController playerController;
     public PlayerSpawnData playerData;
-    public ControllerList GM;
 
     [SerializeField] float jumpPower = 5f;
 
+    public InputData inputData;
+
     // Use this for initialization
-    void Start () {
-        playerData.playerInput = GM;
+    void Awake () {
+        playerController = GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (playerData.playerInput.controllers.Count == 0)
-            return;
-        else 
+
+        if (inputData == null) return;
+
+        if (Input.GetButtonDown(inputData.aButton))
         {
-            for (int i = 0; i < playerData.playerInput.controllers.Count; i++)
-            {
-                // Add some type of conditional to where to player tell the script that it's been paired to a controller
-                if (playerData.playerInput.controllers[i].controllerNum == 1)
-                {
-                    playerInput(i);
-                }
-                if (playerData.playerInput.controllers[i].controllerNum == 2)
-                {
-                    playerInput(i);
-                }
-                if (playerData.playerInput.controllers[i].controllerNum == 3)
-                {
-                    playerInput(i);
-                }
-                if (playerData.playerInput.controllers[i].controllerNum == 4)
-                {
-                    playerInput(i);
-                }
-            }
+            Vector3 inputDirection = Vector3.zero;
+            inputDirection.x = Input.GetAxis(inputData.horizontalAxis);
+            inputDirection.y = Input.GetAxis(inputData.verticalAxis);
+            playerController.Jump(inputDirection, jumpPower);
         }
+
+        if (Input.GetButtonDown(inputData.bButton))
+        {
+            Vector3 inputDirection = Vector3.zero;
+            inputDirection.x = Input.GetAxis(inputData.horizontalAxis);
+            inputDirection.y = Input.GetAxis(inputData.verticalAxis);
+            playerController.Use(inputDirection);
+        }
+
     }
 
     void playerInput(int index) {

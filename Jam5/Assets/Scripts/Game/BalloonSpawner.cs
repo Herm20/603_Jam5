@@ -4,6 +4,7 @@ using UnityEngine;
 public class BalloonSpawner : MonoBehaviour
 {
     [SerializeField] private Transform balloonPrefab;
+    [SerializeField] private Vector2 spawningRangeX;
 
     LinkedList<Transform> reusableBalloons = new LinkedList<Transform>();
 
@@ -22,7 +23,7 @@ public class BalloonSpawner : MonoBehaviour
         }
 
         float size = Random.value + 1;
-        float x = Random.Range(-22f, 22f);
+        float x = Random.Range(spawningRangeX.x, spawningRangeX.y);
 
         balloon.transform.localPosition = new Vector3(x, height, 0);
         balloon.transform.localScale = Vector3.one * size;

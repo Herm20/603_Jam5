@@ -15,12 +15,12 @@ public class EndGameScreenController : MonoBehaviour {
 
     public void SetWinner(PlayerController _playerController) {
         Color c = Color.white;
-        string winnerNumber = "?";
+        string winnerName = "?";
         if (_playerController != null) {
-            // TODO: Implement player numbers (Wait for Herman)
-            //winnerName = SOMETHING
+            c = _playerController.color;
+            winnerName = _playerController.name;
         }
-        winnerText.text = "PLAYER " + winnerNumber + " WINS";
+        winnerText.text = winnerName + " WINS";
         winnerText.color = _playerController.color;
     }
 

@@ -84,16 +84,22 @@ public class GameManager : MonoBehaviour {
     private IEnumerator InitializeGame() {
         playerManager.SpawnPlayers(playerSpawnData);
 		
-		for (int n = 0; n < initialNumBalloons; n++)
-            balloonSpawner.Spawn(-3f, false);
-		
-        yield return null;
+
+
+        while (!Input.GetButtonDown("StartButton"))
+        {
+            yield return null;
+        }
     }
 
     private IEnumerator StartGame() {
         yield return new WaitForSeconds(1);
         if (doCountdown) yield return StartCoroutine(countdownController.BeginCountdown());
         cameraController.speed = 2f;
+
+        for (int n = 0; n < initialNumBalloons; n++)
+            balloonSpawner.Spawn(Random.Range(-5f, 0f), false);
+
         yield return null;
     }
 	
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour {
 
             if (balloonSpawnCooldown <= 0)
 			{
-				balloonSpawner.Spawn(Camera.main.transform.localPosition.y - 15);
+				balloonSpawner.Spawn(Camera.main.transform.localPosition.y - 20);
 
 				float u, v, r;
 
@@ -132,6 +138,13 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator EndGame() {
+        foreach (GameObject gObj in playerManager.playerObjs)
+        {
+            if (gObj != null)
+            {
+                endGameScreenController.SetWinner(gObj.GetComponent<PlayerController>());
+            }
+        }
         endGameScreenController.Display();
         yield return new WaitForSeconds(5);
         if (exitToMenu) {

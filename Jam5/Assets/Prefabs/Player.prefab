@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 114160618174065296}
   - component: {fileID: 255190550352838944}
   - component: {fileID: 114568892665311674}
-  - component: {fileID: 114353006545319320}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -131,34 +130,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2beb95b13b204a925508c9a01e93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMultiJump: 1
-  maxPower: 20
+  canMultiJump: 0
+  maxPower: 30
   deathExplosionPrefab: {fileID: 1799840199686982, guid: 3c5980f431ac8ad43a54e7cb90f6c78a,
     type: 2}
---- !u!114 &114353006545319320
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1857517731685210}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c1039b42659cd4cb94d41ab0e84ceb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  playerData:
-    color: {r: 0, g: 0, b: 0, a: 0}
-    playerInput: {fileID: 0}
-  GM: {fileID: 0}
-  jumpPower: 5
 --- !u!114 &114568892665311674
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1857517731685210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01ab67735ab7dd241a46a9a69a594527, type: 3}
   m_Name: 
