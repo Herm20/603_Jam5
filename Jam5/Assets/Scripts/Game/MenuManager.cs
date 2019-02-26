@@ -41,6 +41,12 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
     
+    // Loads the Instructions scene
+    public void Instructions()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
+    
     // Quits out the game
     public void Quit()
     {
