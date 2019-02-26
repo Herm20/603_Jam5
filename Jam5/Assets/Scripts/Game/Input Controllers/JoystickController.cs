@@ -24,8 +24,14 @@ public class JoystickController : MonoBehaviour {
         inputDirection.x = Input.GetAxis(inputData.horizontalAxis);
         inputDirection.y = Input.GetAxis(inputData.verticalAxis);
 
-        playerController.arrow.up = inputDirection;
-
+        if (inputDirection == Vector3.zero)
+            playerController.arrow.gameObject.SetActive(false);
+        else
+        {
+            playerController.arrow.gameObject.SetActive(true);
+            playerController.arrow.up = inputDirection;
+        }
+        
         if (Input.GetButtonDown(inputData.aButton))
             playerController.Jump(inputDirection, jumpPower);
 
