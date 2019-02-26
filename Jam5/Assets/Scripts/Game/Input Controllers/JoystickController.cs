@@ -7,9 +7,14 @@ public class JoystickController : MonoBehaviour {
     public PlayerSpawnData playerData;
     public PlayerManager playerManager;
 
-    [SerializeField] float jumpPower = 5f;
+    [SerializeField][Range(0, 1)] private float initialJumpPower = 0.4f;
+    [SerializeField] private float jumpChargeSpeed = 1.2f;
+
+    private float currentJumpPower = 0;
 
     public InputData inputData;
+
+    private bool initializationDone = false;
 
     // Use this for initialization
     void Awake () {
@@ -18,8 +23,8 @@ public class JoystickController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
         if (inputData == null) return;
 
         Vector3 inputDirection = Vector3.zero;
@@ -27,16 +32,32 @@ public class JoystickController : MonoBehaviour {
         inputDirection.y = Input.GetAxis(inputData.verticalAxis);
 
         if (inputDirection == Vector3.zero)
+        {
             playerController.arrow.gameObject.SetActive(false);
+            currentJumpPower = 0;
+        }
         else
         {
             playerController.arrow.gameObject.SetActive(true);
             playerController.arrow.up = inputDirection;
+
+            playerController.arrowSprite.color = Color.Lerp(Color.black, Color.red, currentJumpPower);
         }
 
-        if (Input.GetButtonDown(inputData.aButton))
+        if (Input.GetButton(inputData.aButton))
         {
-            playerController.Jump(inputDirection, jumpPower);
+            currentJumpPower = Mathf.Max(initialJumpPower, Mathf.Min(1f, currentJumpPower + jumpChargeSpeed * Time.deltaTime));
+        }
+
+        if (Input.GetButtonUp(inputData.aButton))
+        {
+            if (initializationDone)
+            {
+                playerController.Jump(inputDirection, currentJumpPower);
+                currentJumpPower = 0;
+            }
+            else
+                initializationDone = true;
         }
 
         if (Input.GetButtonDown(inputData.bButton))

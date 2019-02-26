@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator StartGame() {
         yield return new WaitForSeconds(1);
         if (doCountdown) yield return StartCoroutine(countdownController.BeginCountdown());
-        cameraController.speed = 2f;
+        cameraController.speed = 0f;
         selectObj.SetActive(false);
 
         for (int n = 0; n < initialNumBalloons; n++)

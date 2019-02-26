@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Reference")]
     public Transform arrow;
+    public SpriteRenderer arrowSprite;
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -116,6 +117,8 @@ public class PlayerController : MonoBehaviour {
     public void Jump(Vector2 _direction, float _powerScale) {
         if (frozenTime > 0.0f) return;
 
+        if (_direction == Vector2.zero || _powerScale == 0) return;
+
         if (!canMultiJump && !canJump) return;
         canJump = false;
 
@@ -126,6 +129,9 @@ public class PlayerController : MonoBehaviour {
 
         _direction = _direction.normalized;
         float power = maxPower * _powerScale;
+
+        Debug.Log(maxPower);
+        Debug.Log(power);
 
         rigidbody.AddForce(_direction * power, ForceMode2D.Impulse);
 
