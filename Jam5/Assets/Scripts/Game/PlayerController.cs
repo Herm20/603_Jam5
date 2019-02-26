@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour {
     private Vector3 jetpackForce = new Vector3(0.0f, 2000.0f, 0.0f);
     private float jetpackTime = 0.0f;
 
+    [Header("Reference")]
+    public Transform arrow;
+
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

@@ -20,22 +20,17 @@ public class JoystickController : MonoBehaviour {
 
         if (inputData == null) return;
 
+        Vector3 inputDirection = Vector3.zero;
+        inputDirection.x = Input.GetAxis(inputData.horizontalAxis);
+        inputDirection.y = Input.GetAxis(inputData.verticalAxis);
+
+        playerController.arrow.up = inputDirection;
+
         if (Input.GetButtonDown(inputData.aButton))
-        {
-            Vector3 inputDirection = Vector3.zero;
-            inputDirection.x = Input.GetAxis(inputData.horizontalAxis);
-            inputDirection.y = Input.GetAxis(inputData.verticalAxis);
             playerController.Jump(inputDirection, jumpPower);
-        }
 
         if (Input.GetButtonDown(inputData.bButton))
-        {
-            Vector3 inputDirection = Vector3.zero;
-            inputDirection.x = Input.GetAxis(inputData.horizontalAxis);
-            inputDirection.y = Input.GetAxis(inputData.verticalAxis);
             playerController.Use(inputDirection);
-        }
-
     }
 
     void playerInput(int index) {
