@@ -279,7 +279,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: cc22d978b37950247b50b169aa75198e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 88773dab0f7b9404887a5741120ca3ce, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3b558676deebf574489d5877e04501ad, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -325,7 +325,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -349,7 +349,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &419051724
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,9 +599,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 875827245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5a95618f8fda04793934239cfe7801, type: 3}
+  m_Script: {fileID: 11500000, guid: 954d78e195102e343bbc8ce2ce18fcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: cc22d978b37950247b50b169aa75198e, type: 2}
+  mainMenu: {fileID: 0}
+  optionsMenu: {fileID: 0}
 --- !u!114 &875827247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,10 +715,10 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_HorizontalAxis: Dummy
+  m_VerticalAxis: Dummy
+  m_SubmitButton: Dummy
+  m_CancelButton: Dummy
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -1139,7 +1142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 258, y: -87.99999}
+  m_AnchoredPosition: {x: 258, y: -88}
   m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959893432

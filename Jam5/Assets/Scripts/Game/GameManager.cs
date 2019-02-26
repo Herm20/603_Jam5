@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private RandomSpawner obstacleSpawner;
 
+    [SerializeField]
+    private GameObject selectObj;
+
     // Use this for initialization
     void Start () {
         StartCoroutine(GameLoop());
@@ -83,9 +86,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator InitializeGame() {
         playerManager.SpawnPlayers(playerSpawnData);
-		
-
-
+        selectObj.SetActive(true);
         while (!Input.GetButtonDown("StartButton"))
         {
             yield return null;
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(1);
         if (doCountdown) yield return StartCoroutine(countdownController.BeginCountdown());
         cameraController.speed = 2f;
+        selectObj.SetActive(false);
 
         for (int n = 0; n < initialNumBalloons; n++)
             balloonSpawner.Spawn(Random.Range(-5f, 0f), false);
@@ -146,6 +148,11 @@ public class GameManager : MonoBehaviour {
             }
         }
         endGameScreenController.Display();
+        
+        for (int i = 0; i < 4; i++)
+        {
+            playerManager.readyUp[i] = false;
+        }
         yield return new WaitForSeconds(5);
         if (exitToMenu) {
             SceneManager.LoadScene("MainMenu");

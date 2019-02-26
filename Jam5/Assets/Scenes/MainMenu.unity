@@ -661,7 +661,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: cc22d978b37950247b50b169aa75198e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: bd605064e66ca45469d793c8643c64e1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de1782b078165da418429d9df6a84fca, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -707,7 +707,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -731,7 +731,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &1070538332
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,10 +862,10 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_HorizontalAxis: Dummy
+  m_VerticalAxis: Dummy
+  m_SubmitButton: Dummy
+  m_CancelButton: Dummy
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -1193,9 +1193,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1496586922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c523b2a408eb29544b4e6e5d2965745f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3439e466c01fc044a9519ec9bac65f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textToUse: {fileID: 1496586924}
+  useText: 1
+  flashingString: 
+  pauseTime: 0.5
 --- !u!1 &1549183967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,9 +1305,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1549183967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5a95618f8fda04793934239cfe7801, type: 3}
+  m_Script: {fileID: 11500000, guid: 954d78e195102e343bbc8ce2ce18fcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: cc22d978b37950247b50b169aa75198e, type: 2}
+  mainMenu: {fileID: 530875679}
+  optionsMenu: {fileID: 1794180700}
 --- !u!1 &1642847297
 GameObject:
   m_ObjectHideFlags: 0

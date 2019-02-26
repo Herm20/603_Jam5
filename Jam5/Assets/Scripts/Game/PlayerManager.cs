@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
@@ -22,6 +23,12 @@ public class PlayerManager : MonoBehaviour {
     private Transform[] spawnPositions;
 
     public List<GameObject> playerObjs = new List<GameObject>();
+
+    public Image[] selectionGrids;
+    public bool[] readyUp = new bool[4];
+
+    [SerializeField]
+    private Sprite selectionRef;
 
     public void SpawnPlayers(PlayerSpawnData[] _psd) {
 
@@ -50,6 +57,9 @@ public class PlayerManager : MonoBehaviour {
 
         PlayerController playerController = playerObj.GetComponent<PlayerController>();
         playerObj.transform.position = spawnPositions[_data.controllerNum - 1].position;
+
+        selectionGrids[_data.controllerNum - 1].sprite = selectionRef;
+
         playerController.color = _color;
 
         JoystickController joyCon = playerObj.AddComponent<JoystickController>();

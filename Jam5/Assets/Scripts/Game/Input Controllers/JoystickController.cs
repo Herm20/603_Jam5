@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class JoystickController : MonoBehaviour {
     public PlayerController playerController;
@@ -12,13 +11,10 @@ public class JoystickController : MonoBehaviour {
 
     public InputData inputData;
 
-    private Scene currScene;
-
     // Use this for initialization
     void Awake () {
         playerController = GetComponent<PlayerController>();
         playerManager = GameObject.Find("GameManager").GetComponent<PlayerManager>();
-        currScene = SceneManager.GetActiveScene();
 	}
 	
 	// Update is called once per frame
@@ -38,16 +34,17 @@ public class JoystickController : MonoBehaviour {
             playerController.arrow.up = inputDirection;
         }
 
-        if (Input.GetButtonDown(inputData.aButton) && currScene.name == "Game")
+        if (Input.GetButtonDown(inputData.aButton))
         {
             playerController.Jump(inputDirection, jumpPower);
         }
 
-        if (Input.GetButtonDown(inputData.bButton) && currScene.name == "Game")
+        if (Input.GetButtonDown(inputData.bButton))
         {
             playerController.Use(inputDirection);
         }
-        else if (Input.GetButtonDown(inputData.bButton) && currScene.name == "SelectMenu")
+
+        if (Input.GetButtonDown(inputData.bButton))
         {
             playerManager.selectionGrids[inputData.controllerNum - 1].color = Color.red;
             playerManager.readyUp[inputData.controllerNum - 1] = true;
