@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2beb95b13b204a925508c9a01e93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMultiJump: 0
+  numJumps: 1
   maxPower: 30
   deathExplosionPrefab: {fileID: 1799840199686982, guid: 3c5980f431ac8ad43a54e7cb90f6c78a,
     type: 2}
