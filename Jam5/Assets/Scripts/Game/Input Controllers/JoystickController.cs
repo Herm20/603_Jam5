@@ -44,20 +44,23 @@ public class JoystickController : MonoBehaviour {
             playerController.arrowSprite.color = Color.Lerp(Color.black, Color.red, currentJumpPower);
         }
 
-        if (Input.GetButton(inputData.aButton))
+        if (playerController.jumpsRemaining > 0)
         {
-            currentJumpPower = Mathf.Max(initialJumpPower, Mathf.Min(1f, currentJumpPower + jumpChargeSpeed * Time.deltaTime));
-        }
-
-        if (Input.GetButtonUp(inputData.aButton))
-        {
-            if (initializationDone)
+            if (Input.GetButton(inputData.aButton))
             {
-                playerController.Jump(inputDirection, currentJumpPower);
-                currentJumpPower = 0;
+                currentJumpPower = Mathf.Max(initialJumpPower, Mathf.Min(1f, currentJumpPower + jumpChargeSpeed * Time.deltaTime));
             }
-            else
-                initializationDone = true;
+
+            if (Input.GetButtonUp(inputData.aButton))
+            {
+                if (initializationDone)
+                {
+                    playerController.Jump(inputDirection, currentJumpPower);
+                    currentJumpPower = 0;
+                }
+                else
+                    initializationDone = true;
+            }
         }
 
         if (Input.GetButtonDown(inputData.bButton))

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private int numJumps = 1;
-    private int jumpsRemaining;
+    public int jumpsRemaining;
 
     public float maxPower;
     public Color color {
