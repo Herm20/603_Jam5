@@ -130,9 +130,6 @@ public class PlayerController : MonoBehaviour {
         _direction = _direction.normalized;
         float power = maxPower * _powerScale;
 
-        Debug.Log(maxPower);
-        Debug.Log(power);
-
         rigidbody.AddForce(_direction * power, ForceMode2D.Impulse);
 
     }
