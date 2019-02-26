@@ -57,7 +57,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1857517731685210
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2beb95b13b204a925508c9a01e93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMultiJump: 1
+  numJumps: 1
   maxPower: 150
   deathExplosionPrefab: {fileID: 1799840199686982, guid: 3c5980f431ac8ad43a54e7cb90f6c78a,
     type: 2}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 114160618174065296}
-  jumpPower: 100
+  jumpPower: 1
 --- !u!212 &212245369180463496
 SpriteRenderer:
   m_ObjectHideFlags: 1

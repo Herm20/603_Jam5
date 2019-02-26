@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Settings")]
 
     [SerializeField]
-    private bool canMultiJump = false; // Testing
+    private int numJumps = 1;
+    private int jumpsRemaining;
 
     public float maxPower;
     public Color color {
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour {
     private Joint2D joint;
     private BalloonString.GrabSlot currentGrabSlot;
     private BalloonString lastGrabbed;
-    private bool canJump = true;
 
     private Item item = null;
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        jumpsRemaining = numJumps;
     }
 	
 	// Update is called once per frame
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
         joint.enabled = true;
         lastGrabbed = _balloonString;
 
-        canJump = true;
+        jumpsRemaining = numJumps;
     }
 
     public void GetItem(Item _item)
@@ -119,8 +119,8 @@ public class PlayerController : MonoBehaviour {
 
         if (_direction == Vector2.zero || _powerScale == 0) return;
 
-        if (!canMultiJump && !canJump) return;
-        canJump = false;
+        if (jumpsRemaining <= 0) return;
+        jumpsRemaining--;
 
         // Join only enabled when are grabbing a balloon string
         if (joint.enabled) {
@@ -173,9 +173,11 @@ public class PlayerController : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Ground") {
-            canJump = true;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            jumpsRemaining = numJumps;
         }
     }
 

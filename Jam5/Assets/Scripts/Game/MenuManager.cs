@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
     // Loads the Selection scene
     public void Select()
     {
-        SceneManager.LoadScene("SelectMenu");
+        SceneManager.LoadScene("Game");
     }
 
     // Loads the Option popup
